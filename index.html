@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f8"><meta name="description" content="Library Management System mini project">
+  <title>Library Desk | Library Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard"><span class="brand-icon">L</span><span><strong>LIBRARY</strong><small>MANAGEMENT DESK</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav" aria-label="Main navigation">
+      <button class="nav-link active" data-view="dashboard"><span class="nav-symbol">▦</span>Dashboard</button>
+      <button class="nav-link" data-view="books"><span class="nav-symbol">▤</span>Books</button>
+      <button class="nav-link" data-view="members"><span class="nav-symbol">♙</span>Members</button>
+      <button class="nav-link" data-view="circulation"><span class="nav-symbol">⇄</span>Issue &amp; Returns</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="side-note"><span class="note-icon">✦</span><strong>Library Desk</strong><p>A simple way to keep your library organised.</p></div><div class="sidebar-version">MINI PROJECT · v1.0</div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button><div class="breadcrumb">Workspace <span>/</span> <strong id="currentSection">Dashboard</strong></div><div class="topbar-right"><span class="system-dot"></span><span>Library system</span><div class="avatar">AD</div></div></header>
+    <div class="content-wrap">
+      <section class="view active" id="view-dashboard">
+        <div class="page-heading"><div><div class="eyebrow">OVERVIEW</div><h1>Dashboard</h1><p class="subheading">A quick look at your library's activity.</p></div><div class="date-chip" id="todayLabel">Today</div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total book copies</span><span class="stat-icon blue">▤</span></div><strong id="statTotalBooks">—</strong><small>Across all titles</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Available copies</span><span class="stat-icon green">✓</span></div><strong id="statAvailable">—</strong><small>Ready to issue</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Registered members</span><span class="stat-icon purple">♙</span></div><strong id="statMembers">—</strong><small>Active library members</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Books issued</span><span class="stat-icon orange">⇄</span></div><strong id="statIssued">—</strong><small>Currently with members</small></article>
+        </div>
+        <div class="dashboard-grid">
+          <section class="panel recent-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Latest issue and return records</p></div><button class="text-button" data-go="circulation">View all →</button></div><div class="table-wrap"><table><thead><tr><th>BOOK / MEMBER</th><th>ISSUE DATE</th><th>DUE DATE</th><th>STATUS</th></tr></thead><tbody id="recentLoans"><tr><td colspan="4" class="empty-cell">Loading activity…</td></tr></tbody></table></div></section>
+          <section class="panel quick-panel"><div class="panel-heading"><div><h2>Quick actions</h2><p>Common library tasks</p></div></div>
+            <button class="quick-action" data-go="books"><span class="quick-icon blue">＋</span><span><strong>Add a book</strong><small>Expand your catalogue</small></span><b>→</b></button>
+            <button class="quick-action" data-go="members"><span class="quick-icon purple">♙</span><span><strong>Register member</strong><small>Add a library member</small></span><b>→</b></button>
+            <button class="quick-action" data-go="circulation"><span class="quick-icon green">⇄</span><span><strong>Issue a book</strong><small>Record a new issue</small></span><b>→</b></button>
+            <div class="overdue-box"><span>!</span><div><strong id="statOverdue">0 overdue</strong><small>Check due dates in Issue &amp; Returns.</small></div></div>
+          </section>
+        </div>
+      </section>
+      <section class="view" id="view-books">
+        <div class="page-heading"><div><div class="eyebrow">COLLECTION</div><h1>Books</h1><p class="subheading">Manage titles, copies and availability.</p></div><button class="primary-button" id="toggleBookForm">＋ Add book</button></div>
+        <section class="panel form-panel hidden" id="bookFormPanel"><div class="panel-heading"><div><h2 id="bookFormTitle">Add a new book</h2><p>Enter the book details below.</p></div><button class="icon-button" id="closeBookForm" aria-label="Close form">×</button></div>
+          <form id="bookForm" class="form-grid"><input type="hidden" id="bookId"><label>Book title<input id="bookTitle" required maxlength="120" placeholder="e.g. The Alchemist"></label><label>Author<input id="bookAuthor" required maxlength="120" placeholder="Author name"></label><label>Category<input id="bookCategory" required maxlength="60" placeholder="e.g. Fiction"></label><label>ISBN <span class="optional">(optional)</span><input id="bookIsbn" maxlength="30" placeholder="ISBN number"></label><label>Total copies<input id="bookCopies" type="number" min="1" max="10000" value="1" required></label><div class="form-actions"><button class="secondary-button" type="button" id="cancelBookForm">Cancel</button><button class="primary-button" type="submit" id="saveBookButton">Save book</button></div></form>
+        </section>
+        <section class="panel"><div class="list-toolbar"><div><h2>Book catalogue</h2><p id="bookCountLabel">All titles</p></div><div class="search-box"><span>⌕</span><input id="bookSearch" placeholder="Search title, author, ISBN…"></div></div><div class="table-wrap"><table><thead><tr><th>BOOK DETAILS</th><th>CATEGORY</th><th>ISBN</th><th>COPIES</th><th>AVAILABLE</th><th>ACTIONS</th></tr></thead><tbody id="booksTable"><tr><td colspan="6" class="empty-cell">Loading books…</td></tr></tbody></table></div></section>
+      </section>
+      <section class="view" id="view-members">
+        <div class="page-heading"><div><div class="eyebrow">PEOPLE</div><h1>Members</h1><p class="subheading">Keep your library member records up to date.</p></div><button class="primary-button" id="toggleMemberForm">＋ Add member</button></div>
+        <section class="panel form-panel hidden" id="memberFormPanel"><div class="panel-heading"><div><h2>Register a member</h2><p>Fill in the member contact details.</p></div><button class="icon-button" id="closeMemberForm" aria-label="Close form">×</button></div><form id="memberForm" class="form-grid member-form-grid"><label>Full name<input id="memberName" required maxlength="120" placeholder="Member name"></label><label>Email address<input id="memberEmail" type="email" required maxlength="160" placeholder="name@example.com"></label><label>Phone number<input id="memberPhone" required maxlength="20" placeholder="10-digit mobile number"></label><div class="form-actions"><button class="secondary-button" type="button" id="cancelMemberForm">Cancel</button><button class="primary-button" type="submit">Save member</button></div></form></section>
+        <section class="panel"><div class="list-toolbar"><div><h2>Member directory</h2><p id="memberCountLabel">Registered members</p></div><div class="search-box"><span>⌕</span><input id="memberSearch" placeholder="Search name, email, phone…"></div></div><div class="table-wrap"><table><thead><tr><th>MEMBER</th><th>EMAIL ADDRESS</th><th>PHONE</th><th>MEMBER ID</th><th>ACTIONS</th></tr></thead><tbody id="membersTable"><tr><td colspan="5" class="empty-cell">Loading members…</td></tr></tbody></table></div></section>
+      </section>
+      <section class="view" id="view-circulation">
+        <div class="page-heading"><div><div class="eyebrow">CIRCULATION</div><h1>Issue &amp; Returns</h1><p class="subheading">Record book issues and keep track of returns.</p></div></div>
+        <section class="panel issue-panel"><div class="panel-heading"><div><h2>Issue a book</h2><p>Select an available title and a registered member.</p></div><span class="section-tag">NEW ISSUE</span></div><form id="issueForm" class="form-grid issue-form-grid"><label>Select book<select id="issueBook" required><option value="">Choose an available book</option></select></label><label>Select member<select id="issueMember" required><option value="">Choose a member</option></select></label><label>Due date<input id="issueDueDate" type="date" required></label><div class="form-actions"><button class="primary-button" type="submit">Issue book →</button></div></form></section>
+        <section class="panel"><div class="list-toolbar circulation-toolbar"><div><h2>Circulation records</h2><p>All issued and returned books</p></div><div class="filter-group"><button class="filter-button active" data-filter="All">All</button><button class="filter-button" data-filter="Issued">Issued</button><button class="filter-button" data-filter="Returned">Returned</button></div></div><div class="table-wrap"><table><thead><tr><th>BOOK / MEMBER</th><th>ISSUE DATE</th><th>DUE DATE</th><th>RETURN DATE</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="loansTable"><tr><td colspan="6" class="empty-cell">Loading circulation…</td></tr></tbody></table></div></section>
+      </section>
+      <footer class="footer"><span>LIBRARY DESK · MINI PROJECT</span><span>Built with HTML, CSS, JavaScript &amp; Node.js</span></footer>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/app.js"></script>
+</body></html>

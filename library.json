@@ -1,0 +1,20 @@
+{
+  "books": [
+    { "id": "B1001", "title": "The Alchemist", "author": "Paulo Coelho", "category": "Fiction", "isbn": "9780061122415", "totalCopies": 5 },
+    { "id": "B1002", "title": "Clean Code", "author": "Robert C. Martin", "category": "Technology", "isbn": "9780132350884", "totalCopies": 3 },
+    { "id": "B1003", "title": "Introduction to Algorithms", "author": "Thomas H. Cormen", "category": "Technology", "isbn": "9780262046305", "totalCopies": 2 },
+    { "id": "B1004", "title": "Wings of Fire", "author": "A. P. J. Abdul Kalam", "category": "Biography", "isbn": "9788173711466", "totalCopies": 4 },
+    { "id": "B1005", "title": "The Psychology of Money", "author": "Morgan Housel", "category": "Finance", "isbn": "9780857197689", "totalCopies": 3 }
+  ],
+  "members": [
+    { "id": "M1001", "name": "Aarav Sharma", "email": "aarav@example.com", "phone": "9876543210" },
+    { "id": "M1002", "name": "Ananya Verma", "email": "ananya@example.com", "phone": "9876501234" },
+    { "id": "M1003", "name": "Kabir Singh", "email": "kabir@example.com", "phone": "9812345670" },
+    { "id": "M1004", "name": "Meera Gupta", "email": "meera@example.com", "phone": "9898989898" }
+  ],
+  "loans": [
+    { "id": "L1001", "bookId": "B1002", "memberId": "M1001", "issueDate": "2026-11-12", "dueDate": "2026-11-26", "returnDate": null, "status": "Issued" },
+    { "id": "L1002", "bookId": "B1004", "memberId": "M1002", "issueDate": "2026-11-10", "dueDate": "2026-11-24", "returnDate": null, "status": "Issued" },
+    { "id": "L1003", "bookId": "B1001", "memberId": "M1003", "issueDate": "2026-10-01", "dueDate": "2026-10-15", "returnDate": "2026-10-12", "status": "Returned" }
+  ]
+}
